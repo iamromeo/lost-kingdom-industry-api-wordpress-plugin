@@ -9,20 +9,34 @@
 * License: MIT
 */
 
-
+// Author's notes
+// "lkapi" stands for "Lost Kingdom API"
 
 function lkiapi_categories_list_shortcode_function( $array ) {
-
-    return "This is the content of a the lkiapi_categories_list shortcode.";
+    return '
+    <div ng-app="LostKingdomAPIApp" class="lkapi_woop">
+    	This is the content of a the lkiapi_categories_list shortcode. 
+    	<p>1 + 2 = {{1 + 2}}</p>
+		<div ng-controller="TradegoodsCategoriesController as CategoriesList">
+		      <ul class="unstyled">
+		        <li ng-repeat="category in CategoriesList.categories">
+		          {{ category.name }}
+		        </li>
+		      </ul>
+		</div>
+    </div>';
 }
 
 function lkiapi_scripts() {
 	// Load main stylesheet.
-	wp_enqueue_style( 'lkiapi_style', get_stylesheet_uri() );
+	wp_register_style( 'lkiapi_style',  plugin_dir_url( __FILE__ ) . 'styles.css' );
+	wp_enqueue_style( 'lkiapi_style' );
 	// Load Angular
-	wp_enqueue_script( 'lkiapi_angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js', array( ), '', true );
+	wp_register_script( 'lkiapi_angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js', array( ), '1.5.7', false );
+	wp_enqueue_script('lkiapi_angular');
 	// Load custom app script
-	wp_enqueue_script( 'lkiapi_js', get_template_directory_uri() . '/js/app.js', array(), '', true );
+	wp_register_script('lkiapi_js',  plugin_dir_url( __FILE__ ) . 'js/app.js', array('lkiapi_angular'), '0.1', true );
+	wp_enqueue_script('lkiapi_js');
 }
 
 
