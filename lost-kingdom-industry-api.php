@@ -14,9 +14,9 @@
 
 function lkiapi_categories_list_shortcode_function( $array ) {
     return '
-    <div ng-app="LostKingdomAPIApp" class="lkapi_woop">
-    	This is the content of a the lkiapi_categories_list shortcode. 
-    	<p>1 + 2 = {{1 + 2}}</p>
+    <div ng-app="LostKingdomAPIApp" >
+    	<p>This is the content of a the lkiapi_categories_list shortcode. </p>
+    	<p class="lkapi_woop">1 + 2 = {{1 + 2}}</p>
 		<div ng-controller="TradegoodsCategoriesController as CategoriesList">
 		      <ul class="unstyled">
 		        <li ng-repeat="category in CategoriesList.categories">
